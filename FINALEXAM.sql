@@ -1,0 +1,172 @@
+DROP DATABASE IF EXISTS QUANLYHS;
+CREATE DATABASE IF NOT EXISTS QUANLYHS;
+USE QUANLYHS;
+
+DROP TABLE IF EXISTS STUDENTS;
+CREATE TABLE IF NOT EXISTS STUDENTS
+(
+	RN		TINYINT 			NOT NULL,
+    `NAME`	VARCHAR(30)			NOT NULL,
+    AGE		SMALLINT			NOT NULL,
+    GENDER	ENUM('NAM','NU')	        ,
+    PRIMARY KEY (RN)
+);
+
+DROP TABLE IF EXISTS SUBJECTS;
+CREATE TABLE IF NOT EXISTS SUBJECTS
+(
+	SID		TINYINT 		NOT NULL,
+    SNAME 	VARCHAR(20)		NOT NULL,
+    PRIMARY KEY(SID)
+);
+
+DROP TABLE IF EXISTS STUDENTSUBJECT;
+CREATE TABLE IF NOT EXISTS STUDENTSUBJECT
+(
+	RN		TINYINT 		NOT NULL,
+    SID 	TINYINT 		NOT NULL,
+    MARK	SMALLINT	 	NOT NULL,
+    `DATE`	DATE		 	NOT NULL,
+    FOREIGN KEY(RN) 	REFERENCES STUDENTS(RN) ON DELETE CASCADE ON UPDATE CASCADE, 
+    FOREIGN KEY(SID) 	REFERENCES	SUBJECTS(SID) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+INSERT INTO STUDENTS(RN,	 `NAME`,	AGE,	GENDER)
+VALUES				( 1,	'NORTH',	 20,	 'NAM'),
+					( 2,	'SOUTH',	 19,	  'NU'),
+                    ( 3,	 'WEST',	 18,	 'NAM'),
+                    ( 4, 	 'EAST',	 21,	  'NU');
+                    
+INSERT INTO SUBJECTS( SID,       SNAME)
+VALUES				(	1,		'MATH'),
+					(	2,   'HISTORY'),
+                    (	3,   'ENGLISH'),
+					(	4,       'ART');
+                    
+INSERT INTO STUDENTSUBJECT(RN,	  SID,   MARK,			`DATE`)
+VALUES					  (	1,	  	2,	   10, 	  '2019/10/10'),
+						  (	1,	  	3,	   	9,      '2019/8/7'),
+                          (	2,	  	1,		8,      '2019/9/9'),
+                          (	2,		3,		7,      '2019/6/6'),
+                          (	3,		1,		6,      '2019/5/5'),
+                          (	3,		2,		5,      '2019/4/4'),
+                          (	4,		3,		4,      '2019/6/7');
+                          
+                          
+/*B*/
+/*1*/
+
+SELECT	 SNAME
+FROM 	SUBJECTS
+WHERE 	SID NOT IN (SELECT SID
+				    FROM STUDENTSUBJECT);
+                 
+/*2*/
+
+SELECT 	SNAME
+FROM 	SUBJECTS
+WHERE 	SID IN	(SELECT SID
+				 FROM STUDENTSUBJECT
+				 GROUP BY SID
+				 HAVING COUNT(*)>=2);
+             
+/*C*/
+
+
+			
+CREATE VIEW STUDENTSINFO AS
+SELECT 	S.RN,S.`NAME`,S.AGE,CASE
+						    WHEN S.GENDER='NAM' THEN '1'
+						    WHEN S.GENDER='NU' THEN '2'
+						    ELSE '0' END AS 'GENDER',
+		SJ.SNAME,SS.MARK,SS.`DATE`
+FROM 	STUDENTS S
+JOIN 	STUDENTSUBJECT SS ON S.RN=SS.RN
+JOIN 	SUBJECTS SJ ON SS.SID=SJ.SID;
+
+/*D*/
+
+/*1*/
+
+DELIMITER $$
+
+CREATE TRIGGER 	CASUPDATE
+AFTER UPDATE ON SUBJECTS
+FOR EACH ROW
+BEGIN
+
+	UPDATE STUDENTSUBJECT
+    SET    SID=NEW.SID
+    WHERE  STUDENTSUBJECT.SID=OLD.SID;
+    
+END $$
+DELIMITER ;
+
+UPDATE SUBJECTS
+SET SID=5
+WHERE SNAME='MATH';
+
+SELECT* FROM STUDENTSUBJECT;
+
+/*2*/
+
+DELIMITER $$
+CREATE TRIGGER 	CASDEL
+AFTER DELETE ON STUDENTS
+FOR EACH ROW
+BEGIN
+	
+    DELETE FROM STUDENTSUBJECT
+    WHERE  STUDENTSUBJECT.RN=OLD.RN;
+    
+END $$
+DELIMITER ;
+
+DELETE FROM STUDENTS
+WHERE    RN=1;
+
+SELECT* FROM STUDENTSUBJECT;
+
+
+
+
+/*E*/
+
+DELIMITER $$
+
+CREATE PROCEDURE THUTUC(IN STUDENTNAME VARCHAR(30),IN STUDENTMARK SMALLINT)
+BEGIN
+    
+	DELETE S.* FROM STUDENTS S
+    WHERE       S.`NAME` IN (SELECT S.`NAME`
+                             FROM  STUDENTS S
+                             JOIN  STUDENTSUBJECT SS ON SS.RN=S.RN
+							 WHERE S.`NAME`=STUDENTNAME AND SS.MARK=STUDENTMARK);
+                           
+	DELETE SS.* FROM STUDENTSUBJECT SS
+    WHERE       SS.MARK IN   (SELECT SS.MARK
+                              FROM  STUDENTS S
+                              JOIN  STUDENTSUBJECT SS ON SS.RN=S.RN
+                              WHERE S.`NAME`=STUDENTNAME AND SS.MARK=STUDENTMARK);
+	
+END $$
+
+DELIMITER ;
+
+CALL THUTUC();
+                           
+		
+
+
+
+
+
+    
+
+
+
+
+
+
+			
+                          
