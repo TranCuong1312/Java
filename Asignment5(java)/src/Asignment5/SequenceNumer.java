@@ -25,4 +25,8 @@ public class SequenceNumer {
 	public void print() {
 		System.out.println(Arrays.toString(a));
 	}
+
+	
+
+	
 }

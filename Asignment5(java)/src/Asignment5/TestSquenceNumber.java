@@ -4,8 +4,16 @@ package Asignment5;
 public class TestSquenceNumber {
 
 	public static void main(String[] args) {
-		SequenceNumer sn = new SequenceNumer();
-		sn.input();
-		sn.print();
+		
+		QuickSort qs =new QuickSort();
+		qs.input();
+		qs.print();
+		InsertSort is =new InsertSort();
+		is.input();
+		is.print();
+		SelectionSort ss=new SelectionSort();
+		ss.input();
+		ss.print();
+		
 	}
 }
