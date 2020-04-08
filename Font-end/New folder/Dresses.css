@@ -1,0 +1,199 @@
+﻿body {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #ccffff;
+    background: url('https://img.freepik.com/free-photo/high-angle-view-multi-colored-shopping-bags-wooden-background_23-2147889048.jpg?size=626&ext=jpg');
+}
+
+#menubutton{
+    position: fixed;
+    height: 15%;
+    width: 100%;
+    left: 46%;
+    top: 0;
+}
+
+
+
+#menubuttonpic{
+    height: 15px;
+    width: 80px;
+
+}
+
+#menu{
+    display: none;
+    position: absolute;
+    top: 0;
+    left: -46%;
+    width: 100%;
+    background-color: white;
+  
+}
+
+.menu-items{
+    width:16%;
+    float: left;
+}
+
+.menu-items img{
+    height: 65px;
+    width: auto;
+    display:inline-block;
+}
+
+.menu-items p{
+    display:inline-block;
+}
+
+.menu-items a{
+    text-decoration: none;
+    color: black;
+    display: inline-block;
+}
+
+#menubutton:hover #menu{
+    display: block;
+}
+
+.itemsofitem{
+    display: none;
+    position:absolute;
+    background-color: white;
+
+}
+
+.itemsofitem ul{
+    list-style: none;
+    margin-right: 20px;
+    
+ }
+
+
+
+.itemsofitem img{
+    height: 20px;
+    width: auto;
+}
+
+.menu-items:hover .itemsofitem{
+    display: table-column;
+}
+
+.space{
+    height: 100px;
+}
+
+#main{
+    width: 1020px;
+    margin: 0px auto;
+}
+
+#main1{
+    background-color: white;
+}
+
+#main1 #main1pic{
+    margin-top: 25px;
+    height: 90%; 
+    width: 90%; 
+    margin-left: 50px;
+    margin-bottom: 35px;
+}
+
+
+#main #main2{
+    background-color: white;
+}
+
+#main #main2 .mainlist{
+    padding-top: 33px;
+    padding-left: 33px;
+    width: 300px;
+    height: 500px;
+    float: left;
+}
+
+ .mainlist img{
+    width: 300px;
+    height: 450px;
+}
+
+ .mainlist p{
+    text-align: center;
+    font-size: 30px;
+    font-family:'Times New Roman', Times, serif;
+    margin-bottom: 20px;
+}
+
+
+#footer1{
+    position: fixed;
+    bottom: 40%;
+    right:0;
+}
+
+#footer1 img{
+    height: 50px;
+    width: auto;
+}
+
+#footer-hover1{
+    position: absolute;
+    bottom: -70%;
+    right: 2%;
+    display: none;
+    height: 350px;
+    width: 70px;
+    background-color: white;
+}
+
+#footer2{
+    position: fixed;
+    bottom: 40%;
+    left:0;
+}
+
+#footer2 img{
+    height: 50px;
+    width: auto;
+}
+
+#footer-hover2{
+    position: absolute;
+    bottom: -70%;
+    left: 2%;
+    display: none;
+    height: 350px;
+    width: 70px;
+    background-color: white;
+}
+
+.linkcontact{
+    padding-left: 5px;
+    padding-top: 30px;
+    display: block;
+    height: 30px;
+    width: auto;
+}
+
+#footer1:hover #footer-hover1{
+    display: block;
+}
+
+#footer2:hover #footer-hover2{
+    display: block;
+}
+
+@media screen and (min-width: 600px){
+   
+    #main{
+        max-width: 80%;
+    }
+}
+
+@media screen and (min-width: 1024px){
+   
+    #main{
+        max-width: 80%;
+    }
+}

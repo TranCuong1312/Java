@@ -1,0 +1,21 @@
+﻿body {
+   
+}
+
+#table{
+    position: relative;
+    top: 20%;
+    left: 5%;
+    width: 90%;
+}
+
+#buttons {
+    margin-top: 20px;
+    margin-left: 20px;
+    float: left;
+}
+
+#formlogin{
+    margin-left: 40px;
+    width: 500px;
+}
