@@ -1,0 +1,43 @@
+﻿body
+{
+    background-color: #212529;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.navbar {
+	background-color: rgb(255,255,255);
+}
+.navbar li a {
+    color: rgba(82,64,120,0.9);
+}
+.navbar li a:hover {
+    color: black;
+}
+
+.navbar input[type=text]{
+    background-color: rgb(240,240,240);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    box-sizing: border-box;
+    outline: none;
+    width: 200px;
+    padding-left: 10px;
+    margin-left: 10px;
+}
+
+#idNav2 .navbar {
+	background-color: rgba(82,64,120,0.9);
+}
+#idNav2 .navbar li a {
+    color: white;
+}
+#idNav2 .navbar li a:hover {
+    color: black;
+}
+
+#idMain {
+   height: 1000px;
+   background-color: lightblue;
+}
+
