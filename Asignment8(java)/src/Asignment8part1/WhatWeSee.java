@@ -5,16 +5,7 @@ import java.util.Scanner;
 import java.util.List;
 import java.util.Random;
 import java.util.Collections;
-/**
- * This class is mainprogram. 
- * 
- * @Description: .
- * @author: HVTien
- * @create_date: 31-03-2020
- * @version: 1.0
- * @modifer: HVTien
- * @modifer_date: 31-03-2020
- */
+
 public class WhatWeSee {
 	
 	static List<AllBees>bees;
