@@ -1,42 +1,80 @@
 package A6;
 
+import java.util.Scanner;
+
 public class professor extends worker {
+	
+
 	private String faculty;
-	public enum academydegree {bachelor, master, doctor};
-	private int monthlyteachingtime;
-	private int salary, allowance;
+	private String academicDegree;
+	private int monthlyTeachingTime;
+
+	Scanner scanner = new Scanner(System.in);
+
 	
+	public void input() {
+		super.input();
+		System.out.println("Enter the other information of professor: ");
+
 	
-	void professorinformation() {
-		super.workerinformation();
-		 System.out.println("Nhap faculty: ");
-		 faculty = s.nextLine();
-		 System.out.println("Nhap Monthly teaching time: ");
-		 monthlyteachingtime=s.nextInt();
-	}
+		System.out.println("faculty: ");
+		scanner.nextLine();
+		this.faculty = scanner.nextLine();
+
 	
-	public int allowance() {
-		System.out.println("1-Bachelor; 2-Master; 3-Doctor");
-		System.out.println("Nhap chuc vu: ");
-		int c =s.nextInt();
-		if(c>3 ||c<1) {
-			allowance();
-		}if(c==1) {
-			allowance =300;
-		}if(c==2) {
-			allowance=500;
-		}if(c==3) {
-			allowance=1000;
+		scanner.nextLine();
+		System.out.println("academicDegree (bachelor/ master/ doctor):");
+		
+		String academicDegreeEnter = scanner.nextLine();
+		
+		while ((!academicDegreeEnter.equals("bachelor")) && (!academicDegreeEnter.equals("master"))
+				&& (!academicDegreeEnter.equals("doctor"))) {
+			System.out.println("Invalid value, please enter again!");
+			academicDegreeEnter = scanner.nextLine();
 		}
-		return allowance;
+		this.academicDegree = academicDegreeEnter;
+		
+		
+		System.out.println("monthlyTeachingTime: ");
+		this.monthlyTeachingTime = scanner.nextInt();
 	}
+
 	
-	public int salary() {
-		salary =salarymultiplier*730 +allowance+monthlyteachingtime*45;
+	public int getMonthlyTeachingTime() {
+		return monthlyTeachingTime;
+	}
+
+	
+	public float getSalary() {
+		salary = salaryMultiplier * 730 + allowance + monthlyTeachingTime * 45;
 		return salary;
 	}
+
 	
-	void print() {
-		System.out.println("Salary: "+ salary);
+	public void print(){
+		super.print();
+		System.out.println("Faculty: " + this.faculty);
+		System.out.println("Academic Degree: " + this.academicDegree);
+		System.out.println("Monthly Teaching Time" + this.monthlyTeachingTime);
+		System.out.println("Salary:" + this.getSalary());
+	}
+	
+	
+	public String getSortedName(String nameProfessor) {
+
+		String result;
+		String[] names = nameProfessor.split(" ");
+		String firstName, lastName;
+		String middleName = "";
+
+		firstName = names[0];
+		lastName = names[names.length - 1];
+		for (int i = 1; i < names.length - 1; i++) {
+			middleName = middleName + " " + names[i];
+		}
+
+		result = lastName + " " + firstName  + " " + middleName;
+		return result;
+
 	}
 }
