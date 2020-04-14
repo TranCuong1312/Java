@@ -1,0 +1,149 @@
+DROP DATABASE IF EXISTS WORKS;
+CREATE DATABASE IF NOT EXISTS WORKS;
+
+USE WORKS;
+
+DROP TABLE IF EXISTS EMPLOYEES;
+CREATE TABLE IF NOT EXISTS EMPLOYEES
+(
+	EMPLOYEEID				TINYINT 		NOT NULL,
+    EMPLOYEELASTNAME		VARCHAR(30)		NOT NULL,
+    EMPLOYEEFIRSTNAME		VARCHAR(30)		NOT NULL,
+    EMPLOYEEHIREDATE		DATETIME		NOT NULL,
+    EMPLOYEESTATUS			VARCHAR(100)			,
+    SUPERVISORID			TINYINT					,
+    SOCIALSECURITYNUMBER	CHAR(9)			NOT NULL,
+    PRIMARY KEY(EMPLOYEEID)
+);
+
+
+DROP TABLE IF EXISTS PROJECTS;
+CREATE TABLE IF NOT EXISTS PROJECTS
+(
+	PROJECTID				TINYINT			NOT NULL,
+    EMPLOYEEID				TINYINT 		NOT NULL,
+	PROJECTNAME				VARCHAR(10)		NOT NULL,
+    PROJECTSTARTDATE		DATETIME		NOT NULL,
+    PROJECTDESCRIPTION		VARCHAR(100)	NOT NULL,
+    PROJECTDETAIL			VARCHAR(100)	NOT NULL,
+    PROJECTCOMPLETEDON		DATETIME 		NOT NULL,
+    PRIMARY KEY(PROJECTID),
+   	FOREIGN KEY(EMPLOYEEID) 	REFERENCES EMPLOYEES(EMPLOYEEID)
+);
+
+ DROP TABLE IF EXISTS MODULES;
+ CREATE TABLE IF NOT EXISTS MODULES
+ (
+	MODULEID					tinyint		NOT NULL,
+    PROJECTID					TINYINT			NOT NULL,
+    EMPLOYEEID					TINYINT 		NOT NULL,
+    PROJECTMODULESDATE			DATETIME 		NOT NULL,
+    PROJECTMODULECOMPLETEDON	DATETIME 		NOT NULL,
+    PROJECTMODULEDESCRIPTION	VARCHAR(100)	NOT NULL,
+    PRIMARY KEY(MODULEID),
+     FOREIGN KEY(PROJECTID) 	REFERENCES PROJECTS(PROJECTID),
+     FOREIGN KEY(EMPLOYEEID) 	REFERENCES EMPLOYEES(EMPLOYEEID)
+);
+
+DROP TABLE IF EXISTS	WORKDONES;
+CREATE TABLE IF NOT EXISTS	WORKDONES
+(
+	WORKDONEID				TINYINT			NOT NULL,
+    EMPLOYEEID				TINYINT			NOT NULL,
+    MODULEID				tinyint		NOT NULL,
+    WORKDONEDATE			DATETIME		NOT NULL,
+    WORKDONEDESCRIPTION		VARCHAR(100)	NOT NULL,
+    WORKDONESTATUS			VARCHAR(100)			,
+    PRIMARY KEY(WORKDONEID),
+	FOREIGN KEY(EMPLOYEEID) 	REFERENCES EMPLOYEES(EMPLOYEEID),
+   	FOREIGN KEY(MODULEID) 		REFERENCES	MODULES(MODULEID)
+);
+
+drop table if exists login;
+create table if not exists login
+(
+	`account` nvarchar(30) not null,
+    firstname nvarchar(10) not null,
+    lastname nvarchar(10) not null,
+    email nvarchar(30) not null,
+    primary key(`account`)
+);
+
+insert into login(`account`, firstname, lastname, email)
+values           ("qwe", "north", "men", "northmen"),
+				("asd", "south","men", "southmen");
+
+INSERT INTO EMPLOYEES(EMPLOYEEID,EMPLOYEELASTNAME,EMPLOYEEFIRSTNAME,EMPLOYEEHIREDATE,EMPLOYEESTATUS,SUPERVISORID,SOCIALSECURITYNUMBER)
+VALUES				 (		   1,		   'HARD',			  'BAM',    '2018-12-12',          NULL,		   4,         '999999999'),
+					 (		   2, 		   'WEST',			   'HE',    '2018-12-12',        'COOL',  		   4,         '123456789'),
+                     (		   3,		   'EAST',			   'HO',    '2018-12-12',         'NAH',		   4,         '987654321'),
+                     (		   4,		   'LOWW',			   'FK',    '2018-12-12',          NULL,	    NULL,         '000000000');
+                     
+INSERT INTO PROJECTS(PROJECTID,EMPLOYEEID,PROJECTNAME,PROJECTSTARTDATE,PROJECTDESCRIPTION,PROJECTDETAIL,PROJECTCOMPLETEDON)
+VALUES				(		 1,         2,     'YEAH',    '2019-01-03',        'HEYYYYYY',       'TALA',      '2019-01-30'),
+					(		 2,			3,		'DWD',    '2019-01-04',         'WHAAAAA',        'AFD',      '2019-02-01'),
+                    (		 3,			1,		'WEW',    '2019-01-05',         'WOEEEEE',       'ADSA',      '2019-02-02');
+				
+INSERT INTO MODULES(MODULEID,PROJECTID,EMPLOYEEID,PROJECTMODULESDATE,PROJECTMODULECOMPLETEDON,PROJECTMODULEDESCRIPTION)
+VALUES			   (	1,		1,			2,      '2019-01-03',            '2019-01-04',                'EREWRE'),
+				   (	4,		1,			2,      '2019-01-04',            '2019-01-30',                  'EWQR'),
+                   (	2,		2,			3,      '2019-01-04',            '2019-02-01',                  'ADSD'),
+                   (	3,		3,			1,      '2019-01-05',            '2019-02-02',                  'XZCZ');
+				
+INSERT INTO WORKDONES(WORKDONEID,EMPLOYEEID,MODULEID,WORKDONEDATE,WORKDONEDESCRIPTION,WORKDONESTATUS)
+VALUES				 (		   1,		  2,	 1,'2019-01-04',           'ERDFSD',          NULL),
+					 (		   2,         2,     1,'2019-01-30',            'SAFAD',          NULL),
+                     (		   3,		  3,	 2,'2019-12-31',            'ADFSF',          NULL);
+                     
+
+
+/*2*/
+
+DELIMITER $$
+CREATE PROCEDURE WORKDONE_PROJECT()
+BEGIN
+
+	SELECT PROJECTID, PROJECTNAME
+    FROM   PROJECTS
+    WHERE  PROJECTCOMPLETEDON - PROJECTSTARTDATE <120;
+    
+END $$
+DELIMITER ;
+
+DELIMITER $$
+
+CREATE PROCEDURE login1()
+BEGIN
+
+	SELECT `account`, email
+    FROM  login;
+   
+END $$
+DELIMITER ;
+
+call login1();
+
+CALL WORKDONE_PROJECT();
+
+SELECT PROJECTID, PROJECTNAME
+FROM   PROJECTS
+WHERE  PROJECTCOMPLETEDON-PROJECTSTARTDATE <90;
+    
+/*3*/
+SELECT *
+FROM WORKDONES
+where WORKDONEID=4;
+
+
+
+/*4*/
+
+select `account`, firstname, lastname, email
+from login;
+
+drop table if exists manager;
+create table if not exists manager(
+	firstname nvarchar(30) not null,
+    lastname nvarchar(30) not null,
+    
+);

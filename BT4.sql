@@ -110,6 +110,19 @@ BEGIN
 END $$
 DELIMITER ;
 
+DELIMITER $$
+
+CREATE PROCEDURE login1()
+BEGIN
+
+	SELECT `account`, email
+    FROM  login;
+   
+END $$
+DELIMITER ;
+
+call login1();
+
 CALL WORKDONE_PROJECT();
 
 SELECT PROJECTID, PROJECTNAME
@@ -125,3 +138,12 @@ where WORKDONEID=4;
 
 /*4*/
 
+select `account`, firstname, lastname, email
+from login;
+
+drop table if exists manager;
+create table if not exists manager(
+	firstname nvarchar(30) not null,
+    lastname nvarchar(30) not null,
+    
+);
