@@ -1,0 +1,71 @@
+<div *ngFor="let item of productDetail">
+    <div >
+        <div class="col-md-6">
+            <img [src]="item.imageUrlDetail"/>
+            <div class="col-md-6 detail">
+            <p >{{item.titleDetail}}</p>
+            <p>{{item.authorDetail}}</p>
+            <p>{{item.finalPriceDetail}}</p>
+            <p>{{item.regularPriceDetail}}</p>
+            <p>{{item.publishedDateDetail}}</p>
+            <p>{{item.publiserDetail}}</p>
+            <p>{{item.sizeDetail}}</p>
+            <p>{{item.pageCountDetail}}</p>
+            <p>{{item.isTikiNowDetail}}</p>
+            </div>
+        </div >
+    </div>
+    <!-- <div class="col-md-7">
+        <div >
+            <div class="header border-bottom">
+                <h1 class="title">{{item.titleDetail}}</h1>
+                <div class="brand">
+                    <span class="author">Tác giả: <a href="#">{{item.authorDetail}}</a></span>
+                </div>
+            </div>
+            <div class="body">
+                <div class="group">
+                    <p class="price">{{item.finalPriceDetail | currency:'VND'}}</p>
+                    <p class="original-price first-child">Tiết kiệm: <span>-{{item.finalPriceDetail/item.regularPriceDetail | percent}}</span> -{{item.regularPriceDetail-item.finalPriceDetail}}</p>
+                    {{ item.finalPrice | discount:item.regularPrice:'-' }}
+                    <p class="original-price">{{item.regularPriceDetail| currency:'VND'}}</p>
+                </div>
+                <div class="group border-top quantity-buy-favorite">
+                    <app-quantity></app-quantity>
+                    <div class="group-button buy-favorite">
+                        <button class="btn btn-add-to-cart">
+                            <span class="tikicon icon-add-to-cart2x" style="margin-right: 5px;"></span>Chọn mua
+                        </button>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 detail-info" >
+        <h3>Thông tin chi tiết</h3>
+        <table class="table table-bordered" style="width: 50%;">
+            <thead>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Nhà xuất bản</td>
+                    <td>{{item.authorDetail}}</td>
+                </tr>
+                <tr>
+                    <td>Ngày xuất bản</td>
+                    <td>{{item.publishedDateDetail}}</td>
+                </tr>
+                <tr>
+                    <td>Kích thước</td>
+                    <td>{{item.sizeDetail}}</td>
+                </tr>
+                <tr>
+                    <td>Số trang</td>
+                    <td>{{item.pageCountDetail}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div> -->
+</div>
+

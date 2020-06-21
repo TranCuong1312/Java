@@ -1,0 +1,41 @@
+
+
+    <table class="table">
+        <thead>
+        <th>Key</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>FinalPrice</th>
+        <th>RegularPrice</th>
+        <th >Discount
+        
+        </th>
+        <th>Publisher</th>
+        <th>PublishedDate</th>
+        <th>Size</th>
+        <th>Pages</th>
+        <th>IsTikiNow</th>
+        <th>Action</th>
+    </thead>
+    <tbody>
+        <td>{{product.$key}}</td>
+        <td>{{product.title}}</td>
+        <td>{{product.author}}</td>
+        <td>{{product.finalPrice | price}}</td>
+        <td>{{product.regularPrice | price}}</td>
+        <td *ngIf ="display; then thenBlock; else elseBlock">
+            
+        </td>
+        <ng-template #thenBlock><p>-{{product.regularPrice-product.finalPrice}}</p></ng-template>
+        <ng-template #elseBlock><p>-{{product.regularPrice-product.finalPrice | percent}}</p></ng-template>
+        <td>{{product.publisher}}</td>
+        <td>{{product.publishedDate}}</td>
+        <td>{{product.size}}</td>
+        <td>{{product.pageCount}}</td>
+        <td>{{product.isTikiNow}}</td>
+        <td>
+            <button (click) = "handleDisplayDetail()" class="btn btn-success">Detail of detail</button>
+            <button (click) = "displayDiscount()" class="btn btn-danger">Discount in real number</button>
+        </td>
+    </tbody>
+</table>

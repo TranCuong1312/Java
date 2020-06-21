@@ -1,0 +1,8 @@
+
+<div class="col-md-3" *ngFor="let product of products; index as i; trackBy: trackByFn">
+    <app-admin-productdetail [product]="product" (click)="onSelectedProduct(product.$key)"></app-admin-productdetail>   
+</div>
+<div>
+    <app-admin-product-detail-of-athour ></app-admin-product-detail-of-athour>
+</div>
+
