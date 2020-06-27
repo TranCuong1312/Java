@@ -34,10 +34,7 @@ export class AddProductComponent implements OnInit {
   url=`http://localhost:3000/productdb`;
 
   constructor(private msg2: MessengerService, private productService: ProductService, private http: HttpClient) {
-    this.http.post(this.url, this.postData).toPromise().then((data: any) =>{
-      console.log(data);
-      this.json = data.json;
-    });
+   
    }
 
   ngOnInit(): void {
@@ -54,6 +51,10 @@ export class AddProductComponent implements OnInit {
   onSubmit(formValue){
     console.log(formValue);
     this.addProduct(formValue);
+    this.http.post(this.url, formValue).toPromise().then((data: any) =>{
+      console.log(data);
+      this.json = data.json;
+    });
   }
 
   sendData(){

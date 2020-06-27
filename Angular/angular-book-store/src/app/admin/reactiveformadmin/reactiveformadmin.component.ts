@@ -24,10 +24,7 @@ export class ReactiveformadminComponent implements OnInit {
   url=`http://localhost:3000/productdb`;
 
   constructor(private fb: FormBuilder, private http: HttpClient) {
-    this.http.post(this.url, this.postData).toPromise().then((data: any) =>{
-      console.log(data);
-      this.json = data.json;
-    });
+    
   }
 
   ngOnInit(): void {
@@ -73,6 +70,10 @@ export class ReactiveformadminComponent implements OnInit {
 
   onSubmit(){
     console.log(this.adminRF);
+    this.http.post(this.url, this.postData).toPromise().then((data: any) =>{
+      console.log(data);
+      this.json = data.json;
+    });
   }
 
 }
