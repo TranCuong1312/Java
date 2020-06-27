@@ -13,15 +13,15 @@
     </ul>
 
     <!-- class -->
-    <div class="border-red background-yellow">
+    <!-- <div class="border-red background-yellow">
       1. normal class
     </div>
     <div [class.border-red]="isEnableClass" [class.background-yellow]="isEnableClass">
       2. class condition
-    </div> 
+    </div> -->
 
     <!-- ngClass -->
-    <div [class]="redyellow">
+    <!-- <div [class]="'border-red background-yellow'">
       3. class variable
     </div>
     <div [class]="['border-red','background-yellow']">
@@ -32,10 +32,10 @@
     </div>
     <div [ngClass]="{'border-red background-yellow': isEnableClass}">
       5. class object multi key -> only ngClass
-    </div>
+    </div> -->
 
     <!-- style -->
-     <div [style]="style">
+    <!-- <div style="background-color: royalblue;">
       1. normal style
     </div>
     <div [style.border]="'solid 1px blue'">
@@ -49,15 +49,15 @@
     </div>
     <div [style.font-size.px]="'16'">
       5. style variable unit
-    </div>
+    </div> -->
 
     <!-- ngStyle -->
-    <div [style]="{'font-size': isEnableClass ? '16px' : '18px'}">
+    <!-- <div [style]="{'font-size': isEnableClass ? '16px' : '18px'}">
       6. style object
     </div>
     <div [ngStyle]="{'fontSize.px': isEnableClass ? 16 : 18}">
       7. style variable unit -> only ngStyle not style
-    </div>
+    </div> -->
 
 
 </div>

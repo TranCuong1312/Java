@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Product } from 'src/app/shared/models/product';
 import { MessengerService} from 'src/app/services/messenger.service';
+import { AddProductComponent} from 'src/app/admin/add-product/add-product.component';
 
 @Component({
   selector: 'app-admin-productdetail',
@@ -9,13 +10,32 @@ import { MessengerService} from 'src/app/services/messenger.service';
 })
 export class AdminProductdetailComponent implements OnInit {
 
-  display= false;
+  display= true;
 
   @Input() product: Product;
 
   constructor(private msg: MessengerService) { }
+  
+  productDetail=[]
 
   ngOnInit(): void {
+    this.msg.getMsg().subscribe((product: AddProductComponent) =>{
+      console.log(product)
+      this.productDetail.push({//fail in here, it keep pushing everytime we hit the but
+        // keyDetail : product.productKey,
+        // titleDetail : product.title,
+        // imageUrlDetail : product.imageUrl,
+        // authorDetail : product.author,
+        // finalPriceDetail : product.finalPrice,
+        // regularPriceDetail : product.regularPrice,
+        // publisherDetail : product.publisher,
+        // publishedDateDetail : product.publishedDate,
+        // sizeDetail : product.size,
+        // pageCountDetail : product.pageCount,
+        // isTikiNowDetail : product.isTikiNow 
+      })
+      
+    })
   }
 
   handleDisplayDetail(){
@@ -23,6 +43,11 @@ export class AdminProductdetailComponent implements OnInit {
   }
 
   displayDiscount(){
-    this.display= true;
+    if(this.display = true){
+      this.display = false;
+    }
+    if(this.display= false){
+      this.display = true;
+    }
   }
 }

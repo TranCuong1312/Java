@@ -3,6 +3,12 @@
     <app-admin-productdetail [product]="product" (click)="onSelectedProduct(product.$key)"></app-admin-productdetail>   
 </div>
 <div>
-    <app-admin-product-detail-of-athour ></app-admin-product-detail-of-athour>
+   <!-- <app-admin-product-detail-of-athour ></app-admin-product-detail-of-athour>  -->
+   <button (click) ="Add()" class="btn btn-primary" style="height: 30px; width: 50px;;">Add</button>
+   <div style="height: 50px;"></div>
+   <div *ngIf="add;else elseBlock"></div>
+   <ng-template #elseBlock>
+   <app-add-product></app-add-product>
+    </ng-template>
 </div>
-
+<app-reactiveformadmin></app-reactiveformadmin>

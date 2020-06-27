@@ -18,4 +18,18 @@ export class AppComponent {
   handleSelectedProduct(productId: string): void {
     this.selectedProductId = productId;
   }
+
+  handleYesConfirm() {
+    console.log('btn Yes was clicked!');
+  }
+  //Angular complete project !important
+  //Observables ???? asynchronouns data streams dealing
+  //map 
+  //debounceTime() "for search, really useful"
+  //merge: tron data
+  //RxJs all, for merge
+  //Subjects, have 3 kinds(): Behavior, Replay, Async 
+  //Http 
+
+  
 }

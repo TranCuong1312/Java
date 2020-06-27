@@ -23,11 +23,14 @@
         <td>{{product.author}}</td>
         <td>{{product.finalPrice | price}}</td>
         <td>{{product.regularPrice | price}}</td>
-        <td *ngIf ="display; then thenBlock; else elseBlock">
-            
+        <td *ngIf ="display; then thenBlock; else elseBlock">   
         </td>
-        <ng-template #thenBlock><p>-{{product.regularPrice-product.finalPrice}}</p></ng-template>
-        <ng-template #elseBlock><p>-{{product.regularPrice-product.finalPrice | percent}}</p></ng-template>
+        <ng-template #thenBlock>
+            <p>-{{product.regularPrice-product.finalPrice}}</p>
+        </ng-template>
+        <ng-template #elseBlock>
+            <p>-{{product.finalPrice/product.regularPrice| percent}}</p>
+        </ng-template>
         <td>{{product.publisher}}</td>
         <td>{{product.publishedDate}}</td>
         <td>{{product.size}}</td>
@@ -35,7 +38,13 @@
         <td>{{product.isTikiNow}}</td>
         <td>
             <button (click) = "handleDisplayDetail()" class="btn btn-success">Detail of detail</button>
-            <button (click) = "displayDiscount()" class="btn btn-danger">Discount in real number</button>
         </td>
+        <td><button (click) = "displayDiscount()" class="btn btn-danger" *ngIf="display; then btnBlock1; else btnBlock2">Discount in percent</button></td>
+        <ng-template #btnBlock1>
+            <button (click) = "displayDiscount()" class="btn btn-danger" >Discount in percent</button>
+        </ng-template>
+        <ng-template #btnBlock2>
+            <button (click) = "displayDiscount()" class="btn btn-danger" >Discount in real number</button>
+        </ng-template>
     </tbody>
 </table>

@@ -10,11 +10,6 @@ import { Subscription } from 'rxjs';
 export class LoginComponent implements OnInit {
   @ViewChild('btnCloseModal') btnCloseModal;
 
-  // user=[
-  //   email: "sdsds",
-  //   password: ""
-  // ]
-
   invalidUser = false;
   subscription: Subscription;
 
@@ -26,6 +21,7 @@ export class LoginComponent implements OnInit {
   login(loginForm): void {
     this.invalidUser = false;
     const user = loginForm.value;
+    console.log(user);
     this.subscription = this.authService.login(user).subscribe(result => {
       if (result) {
         this.invalidUser = false;

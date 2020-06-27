@@ -2,6 +2,8 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { products } from 'src/app/shared/mock-data/product-list';
 import { Product } from 'src/app/shared/models/product';
 import { StoreService } from '../services/store.service';
+import { importType } from '@angular/compiler/src/output/output_ast';
+import {LoggService} from 'src/app/store/services/logg.service';
 
 
 @Component({
@@ -9,6 +11,8 @@ import { StoreService } from '../services/store.service';
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.scss']
 })
+
+
 export class ProductListComponent implements OnInit {
   @Output() selectProduct = new EventEmitter<string>();
 
@@ -17,7 +21,7 @@ export class ProductListComponent implements OnInit {
   authors: string[];
   originProducts = products;
 
-  constructor(private storeService: StoreService) { }
+  constructor(private storeService: StoreService, private loggService: LoggService) { }
 
   ngOnInit(): void {
     this.products = products;
@@ -36,22 +40,17 @@ export class ProductListComponent implements OnInit {
   }
 
   onSelectedProduct(productId): void {
-    //this.selectProduct.emit(productId);
-     this.storeService.setSelectedProductId(productId);
+    this.selectProduct.emit(productId);
+    // this.storeService.setSelectedProductId(productId);
   }
 
   search(searchValue): void {
+    this.loggService.logConsole(searchValue);
     const lsSearchValue = searchValue.toLocaleLowerCase();
     this.products = this.originProducts.filter(
       ele => ele.title.toLocaleLowerCase().includes(lsSearchValue)
       || ele.author.toLocaleLowerCase().includes(lsSearchValue)
     );
-  }
-
-  selectedProductId: string;
-  
-  handleSelectedProduct(productId: string): void {
-    this.selectedProductId = productId;
   }
 
 }

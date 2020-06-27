@@ -1,0 +1,95 @@
+<div><img src="{{product.productImageUrl}}"/></div>
+<div style="height: 20px"></div>
+<form novalidate (ngSubmit) = "onSubmit(form.value)" #form = "ngForm">
+    <div>
+        <div class="form-group row">
+            <label for ="key"> Key</label>
+            <div>
+                <input class="form-control" type="text" id="key"
+                name="productKey" ngModel required>
+            </div>
+        </div>
+        <!-- <div class ="col alert alert-danger" role="alert" 
+        *ngIf="form.controls.key?.errors?.required && form.controls.key?.touched">
+        Key is required</div> -->
+        <div class="form-group row">
+            <label for ="title"> Title</label>
+            <div>
+                <input class="form-control" type="text" id="title"
+                name="productTitle" ngModel required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for ="imageUrl"> ImageUrl</label>
+            <div>
+                <input class="form-control" type="url" id="imageUrl"
+                name="productImageUrl" [(ngModel)]="product.productImageUrl" required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for ="author"> Author</label>
+            <select id="author"  name="productAuthor" ngModel required>
+                <option value="GuinnessWorldRecords">Guinness World Records</option>
+                <option value="ODayZuiNe"> Ở Đây Zui Nè</option>
+                <option value="CanhThien">Cảnh Thiên</option>
+                <option value="PauloCoelho">Paulo Coelho</option>
+                <option value="VanTinh">Vãn Tình</option>
+                <option value="RobinSharma">Robin Sharma</option>
+              </select >
+        </div>
+        <div class="form-group row">
+            <label for ="finalPrice"> FinalPrice</label>
+            <div>
+                <input class="form-control" type="number" id="finalPrice"
+                name="productFinalPrice" ngModel required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for ="regularPrice"> RefularPrice</label>
+            <div>
+                <input class="form-control" type="number" id="regularPrice"
+                name="productRegularPrice" ngModel required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for ="publisher">Publisher</label>
+            <div>
+                <input class="form-control" type="text" id="publisher"
+                name="productPublisher" ngModel required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for ="publishedDate"> PublishedDate</label>
+            <div>
+                <input class="form-control" type="date" id="publishedDate"
+                name="productPublishedDate" ngModel required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for ="size"> Size</label>
+            <div>
+                <input class="form-control" type="text" id="size"
+                name="productSize" ngModel required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for ="pageCount"> PageCount</label>
+            <div>
+                <input class="form-control" type="text" id="pageCount"
+                name="productPageCount" ngModel required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for ="isTikiNow"> isTikiNow</label>
+            <div>
+                <input type="radio" id="isTikiNow"
+                name="productisTikiNow" ngModel required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div>
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </div>
+        </div>
+    </div>
+</form>

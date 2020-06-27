@@ -6,7 +6,7 @@ import { users } from 'src/app/shared/mock-data/user-list';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {  
+export class AuthService {
   private isLoggedInUser = new BehaviorSubject<boolean>(false);
   $isLoggedInUser = this.isLoggedInUser.asObservable();
 
@@ -44,5 +44,3 @@ export class AuthService {
     localStorage.removeItem('currentUser');
   }
 }
-
-
