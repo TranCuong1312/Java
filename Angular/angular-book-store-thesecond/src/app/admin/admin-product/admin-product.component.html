@@ -1,0 +1,22 @@
+<h1>admin-product works!</h1>
+<div class="col-md-3" *ngFor="let product of products; index as i; trackBy: trackByFn" >
+    <app-admin-product-item [product]="product" (click)="onSelectedProduct(product.id)"></app-admin-product-item>
+</div>
+<div>
+<button (click) ="addProduct()" class="btn btn-primary" style="height: 30px; width: 50px;;">Add</button>
+<div style="height: 20px;"></div>
+<div *ngIf="add;else elseBlock"></div>
+<ng-template #elseBlock>
+  <app-template-form></app-template-form>
+</ng-template>
+</div>
+<div>
+  <button (click) ="addProductReactive()" class="btn btn-primary" style="height: 30px; width: 50px;;">Add</button>
+  <div style="height: 20px;"></div>
+  <div *ngIf="addReactive;else elseBlock2"></div>
+  <ng-template #elseBlock2>
+    <app-reactive-form [product]="selectedProduct" *ngIf="isEditting"></app-reactive-form>
+  </ng-template>
+  </div>
+  
+
