@@ -8,11 +8,11 @@ import { switchMap, map } from 'rxjs/operators';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
-  selector: 'app-admin-product-detail',
-  templateUrl: './admin-product-detail.component.html',
-  styleUrls: ['./admin-product-detail.component.scss']
+  selector: 'app-admin-view-detail',
+  templateUrl: './admin-view-detail.component.html',
+  styleUrls: ['./admin-view-detail.component.scss']
 })
-export class AdminProductDetailComponent implements OnInit {
+export class AdminViewDetailComponent implements OnInit {
 
   product: Product;
   isFetching = true;

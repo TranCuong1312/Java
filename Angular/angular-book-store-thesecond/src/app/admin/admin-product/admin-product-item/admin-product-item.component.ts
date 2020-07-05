@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Product } from 'src/app/shared/models/product';
 import { ProductService } from 'src/app/services/product.service';
 import { StoreService } from 'src/app/store/services/store.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-admin-product-item',
@@ -14,11 +15,16 @@ export class AdminProductItemComponent implements OnInit {
 
   products: Product[] = [];
   selectedProduct: Product;
+  isFetching = true;
   
 
-  constructor(private storeServices: StoreService, private productServices: ProductService) { }
+  constructor(private storeServices: StoreService, private productServices: ProductService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.productServices.getProducts().subscribe(result => {
+      this.isFetching = false;
+      this.products = result;
+    });
   }
 
   onSelectedProduct(productId): void{
@@ -28,7 +34,14 @@ export class AdminProductItemComponent implements OnInit {
 
   editProduct(product){
     this.selectedProduct = product;
+    
   }
 
-  
+  viewDetail(product: Product): void{
+    this.router.navigate(['product', product.id], { relativeTo: this.route });
+  }
+
+  deleteProduct(productID){
+    this.productServices.deleteProduct(productID);
+  }
 }

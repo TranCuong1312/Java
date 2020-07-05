@@ -1,6 +1,9 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { products } from 'src/app/shared/mock-data/product-list';
 import { Product } from 'src/app/shared/models/product';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ProductService } from 'src/app/services/product.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-admin-product',
@@ -16,22 +19,19 @@ export class AdminProductComponent implements OnInit {
   originProducts = products;
   add = true;
   addReactive = true;
-  isEditting = false;
+  isEditting = true;
   selectedProduct: Product;
+  isFetching = true;
+  
  
   
-  constructor() { }
+  constructor(private router: Router, private route: ActivatedRoute, private productService: ProductService) { }
 
   ngOnInit(): void {
-    this.products = products;
-    const publishersObj = {};
-    const authorsObj = {};
-    products.forEach(ele => {
-      publishersObj[ele.publisher] = ele.publisher;
-      authorsObj[ele.author] = ele.author;
+    this.productService.getProducts().subscribe(result => {
+      this.isFetching = false;
+      this.products = result;
     });
-    this.publishers = Object.keys(publishersObj);
-    this.authors = Object.keys(authorsObj);
   }
 
   trackByFn(index, item) {
@@ -50,5 +50,8 @@ export class AdminProductComponent implements OnInit {
     this.addReactive = false;
   }
 
+  viewDetail(product: Product): void{
+    this.router.navigate(['product', product.id], { relativeTo: this.route });
+  }
   
 }

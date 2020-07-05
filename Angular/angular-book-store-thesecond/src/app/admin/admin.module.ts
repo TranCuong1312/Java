@@ -9,6 +9,8 @@ import { AdminProductItemComponent } from './admin-product/admin-product-item/ad
 import { AdminProductDetailComponent } from 'src/app/admin/admin-product-detail/admin-product-detail.component';
 import { TemplateFormComponent } from './template-form/template-form.component';
 import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
+import { AdminRoutingModule } from './admin-routing.module';
+import { AdminViewDetailComponent } from './admin-view-detail/admin-view-detail.component';
 
 
 
@@ -16,9 +18,9 @@ import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
   declarations: [
     AdminProductComponent, 
     AdminProductItemComponent, 
-    AdminProductDetailComponent, TemplateFormComponent, ReactiveFormComponent],
+    AdminProductDetailComponent, TemplateFormComponent, ReactiveFormComponent, AdminViewDetailComponent],
   imports: [
-    CommonModule, FormsModule, SharedModule,  ReactiveFormsModule
+    CommonModule, FormsModule, SharedModule,  ReactiveFormsModule, AdminRoutingModule
   ],
   exports: [
     AdminProductComponent,

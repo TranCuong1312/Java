@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Product } from 'src/app/shared/models/product';
 import { HttpClient, HttpErrorResponse} from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
-import { from, throwError} from 'rxjs';
+import { from, throwError, Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,15 +14,11 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-  getProducts(): Product[]{
-    return this.products;
-  }
-
   createProduct(product: Product){
     return this.http.post('https://angular-book-store-d1bc5.firebaseio.com/product.json', product).pipe(catchError(this.handleError));
   }
 
-  getProduct(){
+  getProducts(){
     return this.http.get('https://angular-book-store-d1bc5.firebaseio.com/product.json').pipe(
       map(data => {
         const products: Product[] = [];
@@ -56,6 +52,12 @@ export class ProductService {
   }
 
   deleteProduct(pid) {
-    return this.http.delete(`https://book-store-f2689.firebaseio.com/product/${pid}.json`);
+    return this.http.delete(`https://angular-book-store-d1bc5.firebaseio.com/product/${pid}.json`);
+  }
+
+  getProductById(pid): Observable<Product> {
+    return this.http.get(`https://angular-book-store-d1bc5.firebaseio.com/product/${pid}.json`).pipe(
+      map(result => ({ ...new Product(result), id: pid}))
+    );
   }
 }

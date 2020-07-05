@@ -14,6 +14,20 @@ export class AuthService {
 
   constructor() { }
 
+  isAdmin(user){
+    const adminLogged = this.users.find(u => user.email === u.email && user.password === u.password && u.isAdmin === true);
+    if(adminLogged){
+      const returnAdmin = {...adminLogged};
+      delete returnAdmin.password;
+      localStorage.setItem('currentUser', JSON.stringify(returnAdmin));
+      this.isLoggedInUser.next(true);
+      return of(true);
+    }else{
+      this.isLoggedInUser.next(false);
+      return of(false);
+    }
+  }
+
   login(user) {
     const loggedInUser = this.users.find(u => user.email === u.email && user.password === u.password);
 

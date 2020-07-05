@@ -4,6 +4,7 @@ import { from } from 'rxjs';
 import {Product} from 'src/app/shared/models/product';
 import {products} from 'src/app/shared/mock-data/product-list';
 import {ProductService} from 'src/app/services/product.service';
+import { StoreService } from 'src/app/store/services/store.service';
 import { FormGroup, FormControl, Validator, Validators, FormBuilder, FormArray } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
@@ -18,7 +19,7 @@ export class ReactiveFormComponent implements OnInit {
   adminRF: FormGroup;
   postData = this.adminRF;
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private productService: ProductService) { }
+  constructor(private fb: FormBuilder, private http: HttpClient, private productService: ProductService, private storeService: StoreService) { }
 
   ngOnInit(): void {
     this.adminRF = this.fb.group({
@@ -35,6 +36,9 @@ export class ReactiveFormComponent implements OnInit {
       size: [this.product.size, [Validators.required]],
       pageCount: [this.product.pageCount, [Validators.required]],
       isTikiNow: [this.product.isTikiNow]
+    });
+    this.storeService.selectedProductId$.subscribe(pid => {
+      this.product = products.find(ele => ele.id === pid);
     });
   }
 

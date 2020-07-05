@@ -2,6 +2,7 @@
 <div class="col-md-3" *ngFor="let product of products; index as i; trackBy: trackByFn" >
     <app-admin-product-item [product]="product" (click)="onSelectedProduct(product.id)"></app-admin-product-item>
 </div>
+<div><app-admin-product-detail></app-admin-product-detail></div>
 <div>
 <button (click) ="addProduct()" class="btn btn-primary" style="height: 30px; width: 50px;;">Add</button>
 <div style="height: 20px;"></div>
@@ -10,6 +11,7 @@
   <app-template-form></app-template-form>
 </ng-template>
 </div>
+<br/>
 <div>
   <button (click) ="addProductReactive()" class="btn btn-primary" style="height: 30px; width: 50px;;">Add</button>
   <div style="height: 20px;"></div>
@@ -17,6 +19,6 @@
   <ng-template #elseBlock2>
     <app-reactive-form [product]="selectedProduct" *ngIf="isEditting"></app-reactive-form>
   </ng-template>
-  </div>
+</div>
   
 

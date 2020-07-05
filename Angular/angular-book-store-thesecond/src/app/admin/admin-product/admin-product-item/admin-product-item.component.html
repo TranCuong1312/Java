@@ -51,7 +51,8 @@
         <td>{{product.isTikiNow}}</td>
         <td>
             <button class ="btn btn-primary" (click)="editProduct(product)">Edit</button>
-            <button class="btn btn-danger">Delete</button>
+            <button class="btn btn-danger" (click) ="deleteProduct(product.id)">Delete</button>
+            <button type="button" class="btn btn-info" (click)="viewDetail(product)">Detail</button>
         </td>
     </tbody>
 </table>
