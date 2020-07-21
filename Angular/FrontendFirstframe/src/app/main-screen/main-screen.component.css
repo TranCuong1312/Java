@@ -1,0 +1,60 @@
+#header{
+    position: fixed;
+    height: 20%;
+    width: 100%;
+}
+
+#header img{
+    height: 100px;
+    width: auto;
+    margin-top: 10px;;
+}
+
+#header h1{
+    font-size: 80px;
+    margin-top: 10px;
+    color: rgba(128, 0, 0, 100);
+}
+
+#body{
+    position: fixed;
+    top: 20%;
+    height: 85%;
+    width: 100%;
+}
+
+#body #buttonsBroad1 {
+    position: absolute;
+    left: 0%;
+    top: 0%;
+    width: 15%;
+    height: 100%;
+    background-color: burlywood;
+}
+
+#body #buttonsBroad1 img{
+    height: 80px;
+    width: auto;
+}
+
+#body #ad{
+    position: absolute;
+    left: 15%;
+    top: 0%;
+    width: 70%;
+    height: 100%;
+    background-color: chartreuse;
+}
+
+#body #buttonsBroad2{
+    position: absolute;
+    left: 85%;
+    top: 0%;
+    width: 15%;
+    height: 100%;
+    background-color: crimson;
+}
+
+.space1{
+    height: 50px;
+}

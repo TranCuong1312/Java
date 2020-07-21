@@ -1,0 +1,14 @@
+<div class="container">
+    <form [formGroup] = "loginForm" (ngSubmit)="OnSubmit()" novalidate>
+        <h1>Please enter your card</h1>
+        <div class="form-group">
+            <label for="iCardNo">Card numbers</label>
+            <input type="text" id="iCardNo" [formControlName]="'cardNo'" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="iPin">Pin</label>
+            <input type="text" id="iPin" [formControlName]="'pin'" class="form-control">
+        </div>
+        <button class="btn btn-success" type="submit">Login</button>
+    </form>
+</div>

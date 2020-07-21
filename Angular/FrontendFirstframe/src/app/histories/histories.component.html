@@ -1,0 +1,19 @@
+<p>histories works!</p>
+<table>
+    <thead>
+        <tr>
+            <th>ATMID</th>
+            <th>LogDate</th>
+            <th>Amount</th>
+            <th>Detail</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let history of histories">
+        <tr>
+            <td>{{history.ATMID}}</td>
+            <td>{{history.LogDate}}</td>
+            <td>{{history.Amount}}</td>
+            <td>{{history.Detail}}</td>
+        </tr>
+    </tbody>
+</table>
